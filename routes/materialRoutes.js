@@ -1,12 +1,12 @@
 import express from "express";
 import { auth } from "../middleware/auth.js";
-import { createMaterial, deleteMaterial, upload } from "../controllers/materialController.js";
+import { createMaterial, deleteMaterial, upload, getMaterialUrl } from "../controllers/materialController.js";
 import Material from "../models/Material.js";
 import path from 'path';
 
 const router = express.Router();
 
-router.post("/create", auth, upload.single('file'), createMaterial);
+router.post("/", upload.single('file'), createMaterial);
 router.delete("/:id", auth, deleteMaterial);
 router.get("/:subjectId", auth, async (req, res) => {
     try {
@@ -32,5 +32,7 @@ router.get("/download/:id", auth, async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+router.get('/url/:id', getMaterialUrl);
 
 export default router;

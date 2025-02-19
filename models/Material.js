@@ -21,14 +21,16 @@ const materialSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Subject',
         required: true 
-    }
+    },
+    fileUrl: { type: String }, // Cloudinary URL
+    cloudinaryId: { type: String }, // Cloudinary public_id
 }, {
     timestamps: true
 });
 
 // Validate that either file or link is provided
 materialSchema.pre('save', function(next) {
-    if (!this.filePath && !this.link) {
+    if (!this.fileUrl && !this.link) {
         next(new Error('Either a file or a link must be provided'));
     }
     next();
