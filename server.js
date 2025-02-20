@@ -17,7 +17,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Your React frontend URL
+    origin: [
+        'http://localhost:5173',  // Local frontend development
+        'https://materialmate.onrender.com', // Your deployed frontend URL
+        'http://localhost:3000',  // Any other local development URLs
+    ],
     credentials: true
 }));
 
