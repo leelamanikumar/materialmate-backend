@@ -19,7 +19,7 @@ const app = express();
 const corsOptions = {
     origin: [
         'http://localhost:5173',  // Local frontend development
-        'https://materialmate.onrender.com', // Your deployed frontend URL
+        'https://materialmate-backend.onrender.com', // Your deployed frontend URL
         'http://localhost:3000',  // Any other local development URLs
     ],
     credentials: true,
